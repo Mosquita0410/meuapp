@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { Video, ResizeMode } from "expo-av";
-import React from "react";
+import { useVideoPlayer, VideoView } from "expo-video";
+import React, { useEffect, useState } from "react";
 import { speakCardText } from "../utils/speech";
 import {
   Image,
@@ -46,6 +46,32 @@ export default function PlayerScreen() {
   const subtitle = params.subtitle || "Confira as instruções no vídeo acima.";
   const headerColor = params.headerColor || "#1E50BA";
   const videoSource = params.videoKey ? videoSources[params.videoKey] : null;
+  const player = useVideoPlayer(
+    videoSource ?? videoSources.postando_foto_instagram,
+    (videoPlayer) => {
+      videoPlayer.loop = true;
+      if (videoSource) {
+        videoPlayer.play();
+      }
+    },
+  );
+  const [videoAspectRatio, setVideoAspectRatio] = useState(9 / 16);
+
+  useEffect(() => {
+    const updateAspectRatio = (videoTrack: typeof player.videoTrack) => {
+      const { width, height } = videoTrack?.size ?? { width: 0, height: 0 };
+      if (width > 0 && height > 0) {
+        setVideoAspectRatio(width / height);
+      }
+    };
+
+    updateAspectRatio(player.videoTrack);
+    const subscription = player.addListener("videoTrackChange", ({ videoTrack }) => {
+      updateAspectRatio(videoTrack);
+    });
+
+    return () => subscription.remove();
+  }, [player]);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
@@ -68,15 +94,14 @@ export default function PlayerScreen() {
           </View>
 
           {/* Moldura / Player do Vídeo */}
-          <View style={styles.phoneFrame}>
+          <View style={[styles.phoneFrame, { aspectRatio: videoAspectRatio }]}>
             {videoSource ? (
-              <Video
-                source={videoSource}
+              <VideoView
+                player={player}
                 style={styles.videoPlayer}
-                useNativeControls
-                resizeMode={ResizeMode.CONTAIN}
-                isLooping
-                shouldPlay
+                nativeControls
+                contentFit="contain"
+                playsInline
               />
             ) : (
               <Text style={styles.noVideoText}>Vídeo em breve!</Text>
@@ -171,7 +196,6 @@ const styles = StyleSheet.create({
   },
   phoneFrame: {
     width: "100%",
-    height: 380,
     backgroundColor: "#000000",
     justifyContent: "center",
     alignItems: "center",
