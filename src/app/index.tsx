@@ -109,7 +109,7 @@ export default function App() {
         </View>
         <ScrollView style={styles.mainContent} contentContainerStyle={styles.aboutContent} showsVerticalScrollIndicator={false}>
           <View style={styles.aboutCardLogo}>
-            <Image source={require("../../assets/logoazul.png")} style={{ width: 80, height: 80 }} resizeMode="contain" />
+            <Image source={require("../../assets/logoazul.png")} style={{ width: 104, height: 104 }} resizeMode="contain" />
             <Text style={styles.versionSmall}>Versão 1.0.0</Text>
           </View>
           <Text style={styles.aboutDescription}>
@@ -204,7 +204,7 @@ export default function App() {
       {/* Conteúdo rolável */}
       <ScrollView
         style={styles.mainContent}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, styles.homeScrollContent]}
         showsVerticalScrollIndicator={false}
       >
         {/* Banner de áudio */}
@@ -233,6 +233,7 @@ export default function App() {
         </View>
 
         {/* Cartões principais */}
+        <View style={styles.homeActions}>
         <View style={styles.grid}>
           <TouchableOpacity
             style={styles.cardLarge}
@@ -330,6 +331,7 @@ export default function App() {
             />
             <Text style={styles.cardSmallText}>Básico</Text>
           </TouchableOpacity>
+        </View>
         </View>
       </ScrollView>
 
@@ -437,13 +439,30 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
+    width: "100%",
+    maxWidth: 640,
+    alignSelf: "center",
     paddingHorizontal: 12,
     paddingTop: 12,
     paddingBottom: 16,
     justifyContent: "flex-start",
   },
 
+  homeScrollContent: {
+    flexGrow: 1,
+    justifyContent: "flex-start",
+    paddingTop: 8,
+  },
+
+  homeActions: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
+
   aboutContent: {
+    width: "100%",
+    maxWidth: 640,
+    alignSelf: "center",
     paddingHorizontal: 16,
     paddingTop: 20,
     alignItems: "center",
@@ -457,27 +476,28 @@ const styles = StyleSheet.create({
     borderColor: "#333333",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    minHeight: 88,
+    paddingVertical: 16,
+    paddingHorizontal: 18,
     marginBottom: 12,
   },
 
   audioText: {
     flex: 1,
     color: "#1E293B",
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: "bold",
     textAlign: "center",
   },
 
   audioButton: {
     backgroundColor: "transparent",
-    marginLeft: 8,
+    marginLeft: 12,
   },
 
   audioIcon: {
-    width: 34,
-    height: 34,
+    width: 42,
+    height: 42,
   },
 
   /* Cartões principais */
@@ -489,12 +509,13 @@ const styles = StyleSheet.create({
 
   cardLarge: {
     width: "48.5%",
+    aspectRatio: 1,
     backgroundColor: "#FFFFFF",
     borderRadius: 14,
     borderWidth: 1.5,
     borderColor: "#333333",
-    paddingVertical: 12,
-    paddingHorizontal: 6,
+    paddingVertical: 18,
+    paddingHorizontal: 8,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 10,
@@ -502,13 +523,13 @@ const styles = StyleSheet.create({
   },
 
   cardLargeIcon: {
-    width: 46,
-    height: 46,
-    marginBottom: 6,
+    width: 72,
+    height: 72,
+    marginBottom: 10,
   },
 
   cardLargeText: {
-    fontSize: 12,
+    fontSize: 15,
     fontWeight: "bold",
     color: "#1E293B",
     textAlign: "center",
@@ -528,21 +549,22 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1.5,
     borderColor: "#333333",
-    paddingVertical: 10,
-    paddingHorizontal: 5,
+    minHeight: 68,
+    paddingVertical: 14,
+    paddingHorizontal: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
 
   cardMediumIcon: {
-    width: 22,
-    height: 22,
-    marginRight: 5,
+    width: 30,
+    height: 30,
+    marginRight: 8,
   },
 
   cardMediumText: {
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: "bold",
     color: "#1E293B",
     flexShrink: 1,
@@ -556,25 +578,26 @@ const styles = StyleSheet.create({
 
   cardSmall: {
     width: "48.5%",
+    minHeight: 68,
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
     borderWidth: 1.5,
     borderColor: "#333333",
-    paddingVertical: 10,
-    paddingHorizontal: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
 
   cardSmallIcon: {
-    width: 22,
-    height: 22,
-    marginRight: 6,
+    width: 30,
+    height: 30,
+    marginRight: 8,
   },
 
   cardSmallText: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "bold",
     color: "#1E293B",
   },
@@ -582,94 +605,96 @@ const styles = StyleSheet.create({
   /* Estilos específicos das novas telas */
   tipCard: {
     backgroundColor: "#FFFFFF",
-    borderRadius: 14,
+    borderRadius: 20,
     borderWidth: 1.5,
     borderColor: "#333333",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    marginBottom: 10,
+    minHeight: 104,
+    paddingVertical: 18,
+    paddingHorizontal: 16,
+    marginBottom: 14,
     elevation: 2,
   },
 
   tipIconBox: {
-    width: 32,
+    width: 48,
     alignItems: "center",
     justifyContent: "center",
   },
 
   tipIconImage: {
-    width: 24,
-    height: 24,
+    width: 40,
+    height: 40,
   },
 
   tipText: {
     flex: 1,
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: "bold",
     color: "#1E293B",
-    marginHorizontal: 8,
+    marginHorizontal: 12,
   },
 
   aboutCardLogo: {
     alignItems: "center",
-    marginBottom: 16,
-    marginTop: 10,
+    marginBottom: 22,
+    marginTop: 16,
   },
 
   versionSmall: {
-    fontSize: 12,
+    fontSize: 15,
     color: "#555",
-    marginTop: 4,
+    marginTop: 6,
   },
 
   aboutDescription: {
-    fontSize: 15,
+    fontSize: 18,
     textAlign: "center",
     color: "#1E293B",
     fontWeight: "bold",
-    marginBottom: 24,
-    paddingHorizontal: 10,
-    lineHeight: 22,
+    marginBottom: 28,
+    paddingHorizontal: 14,
+    lineHeight: 27,
   },
 
   actionButtonRow: {
     backgroundColor: "#FFFFFF",
     borderWidth: 1.5,
     borderColor: "#333333",
-    borderRadius: 14,
+    borderRadius: 18,
     width: "100%",
-    paddingVertical: 14,
+    minHeight: 72,
+    paddingVertical: 18,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 12,
+    marginBottom: 16,
     elevation: 2,
   },
 
   actionButtonIcon: {
-    width: 22,
-    height: 22,
-    marginRight: 8,
+    width: 30,
+    height: 30,
+    marginRight: 10,
   },
 
   actionButtonText: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: "bold",
     color: "#1E293B",
   },
 
   basicTitle: {
-    fontSize: 13,
+    fontSize: 18,
     fontWeight: "bold",
     color: "#1E293B",
   },
 
   basicSub: {
-    fontSize: 11,
+    fontSize: 15,
     color: "#555",
-    marginTop: 2,
+    marginTop: 4,
   },
 
   /* Rodapé seguro */

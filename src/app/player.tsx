@@ -26,8 +26,8 @@ export default function PlayerScreen() {
   // Mapeamento de todos os vídeos da sua pasta assets/Videos/
   const videoSources: Record<string, any> = {
     postando_foto_instagram: require("../../assets/Videos/1_Postando foto Instagram .mp4"),
-    denunciar_instagram: require("../../assets/Videos/2 Denunciar Instagram .mp4"),
-    evitando_golpes_instagram: require("../../assets/Videos/3 Evitando golpes Instagram .mp4"),
+    seguir_colegas_instagram: require("../../assets/Videos/3 Seguindo perfil Instagram.mp4"),
+    curtir_publicacoes_instagram: require("../../assets/Videos/2 Curtir e compartilhar Instagram_.mp4"),
     mensagem_instagram: require("../../assets/Videos/4 Mensagem Instagram .mp4"),
     ver_story_instagram: require("../../assets/Videos/5 Ver story Instagram .mp4"),
     adicionar_contatos_whatsapp: require("../../assets/Videos/6 Adicionar contatos whatsapp .mp4"),
@@ -144,6 +144,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#E5E9F0",
   },
   scrollContent: {
+    width: "100%",
+    maxWidth: 640,
+    alignSelf: "center",
     padding: 16,
     alignItems: "center",
   },
