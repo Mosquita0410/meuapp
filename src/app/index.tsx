@@ -532,27 +532,27 @@ export default function App() {
             {
               t: "Clique",
               d: "Não clique na tela com força.",
-              icone: require("../../assets/perigo.png"),
+              icone: require("../../assets/clique.png"),
             },
             {
               t: "Arraste",
               d: "Arraste para passar as telas.",
-              icone: require("../../assets/sistema.png"),
+              icone: require("../../assets/arraste.png"),
             },
             {
               t: "Tempo de clique",
               d: "Clique na tela por pouco tempo.",
-              icone: require("../../assets/perigo.png"),
+              icone: require("../../assets/tempodeclique.png"),
             },
             {
               t: "Botões",
               d: "Os botões ao lado sao de som e ligar.",
-              icone: require("../../assets/sistema.png"),
+              icone: require("../../assets/botoes.png"),
             },
             {
               t: "Golpes",
               d: "Se atualize dos novos golpes",
-              icone: require("../../assets/perigo.png"),
+              icone: require("../../assets/bascgolpes.png"),
             },
           ].map((item, index) => (
             <View key={index} style={styles.tipCard}>
