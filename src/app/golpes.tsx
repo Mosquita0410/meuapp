@@ -16,34 +16,56 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function GolpesScreen() {
   const router = useRouter();
 
-  // Lista dos tópicos da seção Como Evitar Golpes
+  // Vídeos novos de segurança, exibidos na ordem numérica dos arquivos.
   const golpesItems = [
     {
-      title: "Links suspeitos",
-      description: "Links enviados por estranhos.",
-      icon: require("../../assets/golplink.png"),
+      title: "Golpes",
+      description: "Aprenda a reconhecer os golpes mais comuns.",
+      subtitle: "Veja exemplos de golpes e saiba como se proteger.",
+      videoKey: "golpes",
+      icon: require("../../assets/golpcaveira.png"),
     },
     {
-      title: "Confirme contatos",
-      description: "Verifique a identidade.",
-      icon: require("../../assets/golpalien.png"),
-    },
-    {
-      title: "Denuncie suspeitos",
-      description: "Bloqueie contatos suspeitos.",
+      title: "Denunciar no Instagram",
+      description: "Aprenda a denunciar perfis e conteúdos suspeitos.",
+      subtitle: "Siga os passos para denunciar um perfil suspeito no Instagram.",
+      videoKey: "denunciar_instagram_golpes",
       icon: require("../../assets/golpblock.png"),
     },
     {
-      title: "Ative a senha",
-      description: "Mantenha seu celular seguro.",
+      title: "O que fazer diante de um golpe",
+      description: "Saiba como agir se você for vítima de um golpe.",
+      subtitle: "Veja os passos recomendados para agir diante de um golpe.",
+      videoKey: "o_que_fazer_diante_de_um_golpe",
       icon: require("../../assets/golpcadeado.png"),
     },
     {
-      title: "Golpes",
-      description: "Veja os mais famosos golpes.",
+      title: "Bloqueio de tela",
+      description: "Aprenda a proteger o acesso ao seu celular.",
+      subtitle: "Configure o bloqueio de tela para aumentar a segurança do aparelho.",
+      videoKey: "bloqueio_tela",
+      icon: require("../../assets/cadeadoazul.png"),
+    },
+    {
+      title: "Ligações suspeitas",
+      description: "Aprenda a identificar e lidar com chamadas suspeitas.",
+      subtitle: "Veja como reconhecer uma ligação suspeita e se proteger.",
+      videoKey: "ligacoes_suspeitas",
       icon: require("../../assets/perigo.png"),
     },
   ];
+
+  const handleOpenVideo = (item: (typeof golpesItems)[number]) => {
+    router.push({
+      pathname: "/player",
+      params: {
+        title: item.title,
+        subtitle: item.subtitle,
+        headerColor: "#dc2626",
+        videoKey: item.videoKey,
+      },
+    });
+  };
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
@@ -62,18 +84,24 @@ export default function GolpesScreen() {
       >
         {golpesItems.map((item, index) => (
           <View key={index} style={styles.card}>
-            <View style={styles.iconBox}>
-              <Image
-                source={item.icon}
-                style={styles.iconImage}
-                resizeMode="contain"
-              />
-            </View>
+            <TouchableOpacity
+              style={styles.cardContent}
+              activeOpacity={0.7}
+              onPress={() => handleOpenVideo(item)}
+            >
+              <View style={styles.iconBox}>
+                <Image
+                  source={item.icon}
+                  style={styles.iconImage}
+                  resizeMode="contain"
+                />
+              </View>
 
-            <View style={styles.textBox}>
-              <Text style={styles.cardTitle}>{item.title}</Text>
-              <Text style={styles.cardSub}>{item.description}</Text>
-            </View>
+              <View style={styles.textBox}>
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text style={styles.cardSub}>{item.description}</Text>
+              </View>
+            </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.audioButton}
@@ -144,6 +172,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginBottom: 16,
     elevation: 2,
+  },
+  cardContent: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
   },
   iconBox: {
     width: 56,

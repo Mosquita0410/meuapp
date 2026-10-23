@@ -40,6 +40,11 @@ export default function PlayerScreen() {
     ligacao_celular: require("../../assets/Videos/Ligação pelo celular .mp4"),
     salvar_contato: require("../../assets/Videos/Salvar contato .mp4"),
     wifi: require("../../assets/Videos/wi-fi.mp4"),
+    golpes: require("../../assets/images/Videos/16 Golpes.mp4"),
+    denunciar_instagram_golpes: require("../../assets/images/Videos/17 Denunciar Instagram .mp4"),
+    o_que_fazer_diante_de_um_golpe: require("../../assets/images/Videos/18 O que fazer diante de um golpe.mp4"),
+    bloqueio_tela: require("../../assets/images/Videos/19 Bloqueio de tela.mp4"),
+    ligacoes_suspeitas: require("../../assets/images/Videos/20 Ligações suspeitas_.mp4"),
   };
 
   const title = params.title || "Passo a Passo";
