@@ -560,7 +560,7 @@ export default function App() {
       {/* Conteúdo rolável */}
       <ScrollView
         style={styles.mainContent}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, styles.homeScrollContent]}
         showsVerticalScrollIndicator={false}
       >
         {/* Banner de áudio */}
@@ -569,10 +569,10 @@ export default function App() {
             Olá, vamos aprender a usar seu celular de forma fácil e prática!
           </Text>
 
-          <TouchableOpacity style={styles.audioButton} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.homeAudioButton} activeOpacity={0.7}>
             <Image
               source={require("../../assets/som.png")}
-              style={styles.audioIcon}
+              style={styles.homeAudioIcon}
               resizeMode="contain"
             />
           </TouchableOpacity>
@@ -740,6 +740,14 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     justifyContent: "flex-start",
   },
+  homeScrollContent: {
+    width: "100%",
+    maxWidth: 640,
+    alignSelf: "center",
+    flexGrow: 1,
+    justifyContent: "center",
+    paddingHorizontal: 16,
+  },
   aboutContent: { paddingHorizontal: 16, paddingTop: 20, alignItems: "center" },
 
   audioBanner: {
@@ -749,16 +757,24 @@ const styles = StyleSheet.create({
     borderColor: "#333333",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    minHeight: 88,
+    paddingVertical: 16,
+    paddingHorizontal: 18,
     marginBottom: 12,
   },
   audioText: {
     flex: 1,
     color: "#1E293B",
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  homeAudioButton: {
+    marginLeft: 12,
+  },
+  homeAudioIcon: {
+    width: 42,
+    height: 42,
   },
   audioButton: {
     backgroundColor: "#1E50BA",
@@ -775,20 +791,21 @@ const styles = StyleSheet.create({
   },
   cardLarge: {
     width: "48.5%",
+    aspectRatio: 1,
     backgroundColor: "#FFFFFF",
     borderRadius: 14,
     borderWidth: 1.5,
     borderColor: "#333333",
-    paddingVertical: 12,
-    paddingHorizontal: 6,
+    paddingVertical: 18,
+    paddingHorizontal: 8,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 10,
     elevation: 2,
   },
-  cardLargeIcon: { width: 46, height: 46, marginBottom: 6 },
+  cardLargeIcon: { width: 72, height: 72, marginBottom: 10 },
   cardLargeText: {
-    fontSize: 12,
+    fontSize: 15,
     fontWeight: "bold",
     color: "#1E293B",
     textAlign: "center",
@@ -806,13 +823,14 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1.5,
     borderColor: "#333333",
-    paddingVertical: 10,
-    paddingHorizontal: 5,
+    minHeight: 68,
+    paddingVertical: 14,
+    paddingHorizontal: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
-  cardMediumIcon: { width: 22, height: 22, marginRight: 5 },
+  cardMediumIcon: { width: 30, height: 30, marginRight: 8 },
   cardMediumText: {
     fontSize: 11,
     fontWeight: "bold",
@@ -823,12 +841,13 @@ const styles = StyleSheet.create({
   centerRow: { alignItems: "center", marginBottom: 4 },
   cardSmall: {
     width: "48.5%",
+    minHeight: 68,
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
     borderWidth: 1.5,
     borderColor: "#333333",
-    paddingVertical: 10,
-    paddingHorizontal: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
