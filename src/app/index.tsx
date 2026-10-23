@@ -535,18 +535,18 @@ export default function App() {
               icone: require("../../assets/perigo.png"),
             },
             {
-              t: "Confirme contatos",
-              d: "Verifique a identidade.",
+              t: "Arraste",
+              d: "Arraste para passar as telas.",
               icone: require("../../assets/sistema.png"),
             },
             {
-              t: "Denuncie suspeitos",
-              d: "Bloqueie contatos suspeitos.",
+              t: "Tempo de clique",
+              d: "Clique na tela por pouco tempo.",
               icone: require("../../assets/perigo.png"),
             },
             {
-              t: "Ative a senha",
-              d: "Mantenha seu celular seguro.",
+              t: "Botões",
+              d: "Os botões ao lado sao de som e ligar.",
               icone: require("../../assets/sistema.png"),
             },
             {
