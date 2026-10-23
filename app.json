@@ -34,15 +34,9 @@
           "imageWidth": 76
         }
       ],
-<<<<<<< HEAD
-      "expo-image",
-      "expo-web-browser",
-      "expo-video"
-=======
       "expo-video",
       "expo-image",
       "expo-web-browser"
->>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
     ],
     "experiments": {
       "typedRoutes": true,
