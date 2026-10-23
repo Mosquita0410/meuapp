@@ -485,10 +485,7 @@ export default function App() {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.actionButtonRow}
-            activeOpacity={0.7}
-          >
+          <TouchableOpacity style={styles.actionButtonRow} activeOpacity={0.7}>
             <Image
               source={require("../../assets/estrelaazulbb.png")}
               style={styles.actionButtonIcon}
@@ -496,10 +493,7 @@ export default function App() {
             />
             <Text style={styles.actionButtonText}>Avaliar o app</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.actionButtonRow}
-            activeOpacity={0.7}
-          >
+          <TouchableOpacity style={styles.actionButtonRow} activeOpacity={0.7}>
             <Image
               source={require("../../assets/compartilharazul.png")}
               style={styles.actionButtonIcon}
