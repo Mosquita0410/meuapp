@@ -1,5 +1,6 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useVideoPlayer, VideoView } from "expo-video";
+<<<<<<< HEAD
 import {
     Image,
     Platform,
@@ -28,6 +29,22 @@ function LocalVideoPlayer({ source }: { source: number }) {
   );
 }
 
+=======
+import React, { useEffect, useState } from "react";
+import { speakCardText } from "../utils/speech";
+import {
+  Image,
+  Platform,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
 export default function PlayerScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{
@@ -37,6 +54,7 @@ export default function PlayerScreen() {
     videoKey?: string;
   }>();
 
+<<<<<<< HEAD
   const videoSources: Record<string, number> = {
     postando_foto_instagram: require("../../assets/images/Videos/1_Postando foto Instagram .mp4"),
     denunciar_instagram: require("../../assets/images/Videos/2 Denunciar Instagram .mp4"),
@@ -53,12 +71,60 @@ export default function PlayerScreen() {
     ligacao_celular: require("../../assets/images/Videos/Ligação pelo celular .mp4"),
     salvar_contato: require("../../assets/images/Videos/Salvar contato .mp4"),
     wifi: require("../../assets/images/Videos/wi-fi.mp4"),
+=======
+  // Mapeamento de todos os vídeos da sua pasta assets/Videos/
+  const videoSources: Record<string, any> = {
+    postando_foto_instagram: require("../../assets/Videos/1_Postando foto Instagram .mp4"),
+    seguir_colegas_instagram: require("../../assets/Videos/3 Seguindo perfil Instagram.mp4"),
+    curtir_publicacoes_instagram: require("../../assets/Videos/2 Curtir e compartilhar Instagram_.mp4"),
+    mensagem_instagram: require("../../assets/Videos/4 Mensagem Instagram .mp4"),
+    ver_story_instagram: require("../../assets/Videos/5 Ver story Instagram .mp4"),
+    adicionar_contatos_whatsapp: require("../../assets/Videos/6 Adicionar contatos whatsapp .mp4"),
+    bloquear_contatos_whatsapp: require("../../assets/Videos/7 Bloquear contatos whatsapp .mp4"),
+    criar_grupo_whatsapp: require("../../assets/Videos/8 Criar grupo whatsapp .mp4"),
+    enviar_mensagem_whatsapp: require("../../assets/Videos/9 Enviar mensagem whatsapp .mp4"),
+    ligacao_whatsapp: require("../../assets/Videos/10 Ligação pelo whatsapp .mp4"),
+    ajustar_brilho: require("../../assets/Videos/Ajustar brilho .mp4"),
+    instalado_aplicativos: require("../../assets/Videos/instalado aplicativos .mp4"),
+    ligacao_celular: require("../../assets/Videos/Ligação pelo celular .mp4"),
+    salvar_contato: require("../../assets/Videos/Salvar contato .mp4"),
+    wifi: require("../../assets/Videos/wi-fi.mp4"),
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
   };
 
   const title = params.title || "Passo a Passo";
   const subtitle = params.subtitle || "Confira as instruções no vídeo acima.";
   const headerColor = params.headerColor || "#1E50BA";
   const videoSource = params.videoKey ? videoSources[params.videoKey] : null;
+<<<<<<< HEAD
+=======
+  const player = useVideoPlayer(
+    videoSource ?? videoSources.postando_foto_instagram,
+    (videoPlayer) => {
+      videoPlayer.loop = true;
+      if (videoSource) {
+        videoPlayer.play();
+      }
+    },
+  );
+  const [videoAspectRatio, setVideoAspectRatio] = useState(9 / 16);
+
+  useEffect(() => {
+    const updateAspectRatio = (videoTrack: typeof player.videoTrack) => {
+      const { width, height } = videoTrack?.size ?? { width: 0, height: 0 };
+      if (width > 0 && height > 0) {
+        setVideoAspectRatio(width / height);
+      }
+    };
+
+    updateAspectRatio(player.videoTrack);
+    const subscription = player.addListener("videoTrackChange", ({ videoTrack }) => {
+      updateAspectRatio(videoTrack);
+    });
+
+    return () => subscription.remove();
+  }, [player]);
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
@@ -76,16 +142,32 @@ export default function PlayerScreen() {
       >
         {/* Card do Player */}
         <View style={styles.videoCardContainer}>
+<<<<<<< HEAD
           <View
             style={[styles.videoHeaderBar, { backgroundColor: headerColor }]}
           >
+=======
+          <View style={[styles.videoHeaderBar, { backgroundColor: headerColor }]}>
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
             <Text style={styles.videoHeaderBarText}>Passo a passo</Text>
           </View>
 
           {/* Moldura / Player do Vídeo */}
+<<<<<<< HEAD
           <View style={styles.phoneFrame}>
             {videoSource ? (
               <LocalVideoPlayer source={videoSource} />
+=======
+          <View style={[styles.phoneFrame, { aspectRatio: videoAspectRatio }]}>
+            {videoSource ? (
+              <VideoView
+                player={player}
+                style={styles.videoPlayer}
+                nativeControls
+                contentFit="contain"
+                playsInline
+              />
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
             ) : (
               <Text style={styles.noVideoText}>Vídeo em breve!</Text>
             )}
@@ -96,13 +178,27 @@ export default function PlayerScreen() {
         <View style={styles.instructionBanner}>
           <TouchableOpacity style={styles.smallAudioBtn} activeOpacity={0.7}>
             <Image
+<<<<<<< HEAD
               source={require("../../assets/estrela.png")}
+=======
+              source={require("../../assets/estrelaazulbb.png")}
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
               style={{ width: 20, height: 20 }}
               resizeMode="contain"
             />
           </TouchableOpacity>
           <Text style={styles.instructionText}>{subtitle}</Text>
+<<<<<<< HEAD
           <TouchableOpacity style={styles.audioButtonSmall} activeOpacity={0.7}>
+=======
+          <TouchableOpacity
+            style={styles.audioButtonSmall}
+            activeOpacity={0.7}
+            onPress={() => speakCardText(`${title}. ${subtitle}`)}
+            accessibilityRole="button"
+            accessibilityLabel={`Ouvir: ${title}. ${subtitle}`}
+          >
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
             <Image
               source={require("../../assets/som.png")}
               style={styles.audioIconSmall}
@@ -146,6 +242,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#E5E9F0",
   },
   scrollContent: {
+<<<<<<< HEAD
+=======
+    width: "100%",
+    maxWidth: 640,
+    alignSelf: "center",
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
     padding: 16,
     alignItems: "center",
   },
@@ -170,7 +272,10 @@ const styles = StyleSheet.create({
   },
   phoneFrame: {
     width: "100%",
+<<<<<<< HEAD
     height: 380,
+=======
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
     backgroundColor: "#000000",
     justifyContent: "center",
     alignItems: "center",
@@ -206,6 +311,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   audioButtonSmall: {
+<<<<<<< HEAD
     backgroundColor: "#1E50BA",
     borderRadius: 16,
     padding: 8,
@@ -214,6 +320,13 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     tintColor: "#FFFFFF",
+=======
+    backgroundColor: "transparent",
+  },
+  audioIconSmall: {
+    width: 34,
+    height: 34,
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
   },
   footer: {
     paddingHorizontal: 16,

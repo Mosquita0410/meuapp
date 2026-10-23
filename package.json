@@ -3,6 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "dependencies": {
+<<<<<<< HEAD
     "@expo/ui": "57.0.8",
     "expo": "57.0.9",
     "expo-constants": "57.0.8",
@@ -19,6 +20,25 @@
     "expo-system-ui": "57.0.2",
     "expo-video": "57.0.2",
     "expo-web-browser": "57.0.2",
+=======
+    "@expo/ui": "~57.0.26",
+    "expo": "~57.0.31",
+    "expo-constants": "~57.0.17",
+    "expo-device": "~57.0.2",
+    "expo-font": "~57.0.3",
+    "expo-glass-effect": "~57.0.4",
+    "expo-image": "~57.0.5",
+    "expo-linear-gradient": "~57.0.2",
+    "expo-linking": "~57.0.13",
+    "expo-router": "~57.0.29",
+    "expo-speech": "~57.0.3",
+    "expo-splash-screen": "~57.0.10",
+    "expo-status-bar": "~57.0.1",
+    "expo-symbols": "~57.0.3",
+    "expo-system-ui": "~57.0.4",
+    "expo-video": "~57.0.5",
+    "expo-web-browser": "~57.0.3",
+>>>>>>> 8635fe4e825a597cca91d49703871f8c6fa79875
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.86.2",
