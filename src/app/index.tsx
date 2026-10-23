@@ -12,6 +12,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { speakCardText } from "../utils/speech";
 
 export default function App() {
   const router = useRouter();
@@ -107,7 +108,13 @@ export default function App() {
                 <Text style={styles.basicTitle}>{item.t}</Text>
                 <Text style={styles.basicSub}>{item.d}</Text>
               </View>
-              <TouchableOpacity style={styles.audioButton} activeOpacity={0.7}>
+              <TouchableOpacity
+                style={styles.audioButton}
+                activeOpacity={0.7}
+                onPress={() => speakCardText(`${item.t}. ${item.d}`)}
+                accessibilityRole="button"
+                accessibilityLabel={`Ouvir: ${item.t}. ${item.d}`}
+              >
                 <Image
                   source={require("../../assets/som.png")}
                   style={styles.audioIcon}
@@ -182,7 +189,13 @@ export default function App() {
                 <Text style={styles.basicTitle}>{item.t}</Text>
                 <Text style={styles.basicSub}>{item.d}</Text>
               </View>
-              <TouchableOpacity style={styles.audioButton} activeOpacity={0.7}>
+              <TouchableOpacity
+                style={styles.audioButton}
+                activeOpacity={0.7}
+                onPress={() => speakCardText(`${item.t}. ${item.d}`)}
+                accessibilityRole="button"
+                accessibilityLabel={`Ouvir: ${item.t}. ${item.d}`}
+              >
                 <Image
                   source={require("../../assets/som.png")}
                   style={styles.audioIcon}
@@ -365,7 +378,7 @@ export default function App() {
         </View>
         <ScrollView
           style={styles.mainContent}
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={styles.featureListContent}
           showsVerticalScrollIndicator={false}
         >
           {[
@@ -399,7 +412,13 @@ export default function App() {
                 />
               </View>
               <Text style={styles.tipText}>{item.texto}</Text>
-              <TouchableOpacity style={styles.audioButton} activeOpacity={0.7}>
+              <TouchableOpacity
+                style={styles.audioButton}
+                activeOpacity={0.7}
+                onPress={() => speakCardText(item.texto)}
+                accessibilityRole="button"
+                accessibilityLabel={`Ouvir: ${item.texto}`}
+              >
                 <Image
                   source={require("../../assets/som.png")}
                   style={styles.audioIcon}
@@ -438,15 +457,34 @@ export default function App() {
           <View style={styles.aboutCardLogo}>
             <Image
               source={require("../../assets/logo.png")}
-              style={{ width: 80, height: 80 }}
+              style={{ width: 112, height: 112 }}
               resizeMode="contain"
             />
             <Text style={styles.versionSmall}>Versão 1.0.0</Text>
           </View>
-          <Text style={styles.aboutDescription}>
-            Este aplicativo foi criado para ajudar você a aprender a usar seu
-            celular de forma fácil e prática.
-          </Text>
+          <View style={styles.aboutNarrationCard}>
+            <Text style={styles.aboutDescription}>
+              Este aplicativo foi criado para ajudar você a aprender a usar seu
+              celular de forma fácil e prática.
+            </Text>
+            <TouchableOpacity
+              style={styles.aboutAudioButton}
+              activeOpacity={0.7}
+              onPress={() =>
+                speakCardText(
+                  "Sobre o app. Este aplicativo foi criado para ajudar você a aprender a usar seu celular de forma fácil e prática.",
+                )
+              }
+              accessibilityRole="button"
+              accessibilityLabel="Ouvir sobre o aplicativo"
+            >
+              <Image
+                source={require("../../assets/som.png")}
+                style={styles.aboutAudioIcon}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity style={styles.actionButtonRow} activeOpacity={0.7}>
             <Text style={styles.actionButtonText}>⭐ Avaliar o app</Text>
           </TouchableOpacity>
@@ -477,7 +515,7 @@ export default function App() {
         </View>
         <ScrollView
           style={styles.mainContent}
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={styles.featureListContent}
           showsVerticalScrollIndicator={false}
         >
           {[
@@ -515,11 +553,17 @@ export default function App() {
                   resizeMode="contain"
                 />
               </View>
-              <View style={{ flex: 1, marginHorizontal: 8 }}>
+              <View style={{ flex: 1, marginHorizontal: 12 }}>
                 <Text style={styles.basicTitle}>{item.t}</Text>
                 <Text style={styles.basicSub}>{item.d}</Text>
               </View>
-              <TouchableOpacity style={styles.audioButton} activeOpacity={0.7}>
+              <TouchableOpacity
+                style={styles.audioButton}
+                activeOpacity={0.7}
+                onPress={() => speakCardText(`${item.t}. ${item.d}`)}
+                accessibilityRole="button"
+                accessibilityLabel={`Ouvir: ${item.t}. ${item.d}`}
+              >
                 <Image
                   source={require("../../assets/som.png")}
                   style={styles.audioIcon}
@@ -740,6 +784,12 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     justifyContent: "flex-start",
   },
+  featureListContent: {
+    width: "100%",
+    maxWidth: 640,
+    alignSelf: "center",
+    padding: 20,
+  },
   homeScrollContent: {
     width: "100%",
     maxWidth: 640,
@@ -748,7 +798,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 16,
   },
-  aboutContent: { paddingHorizontal: 16, paddingTop: 20, alignItems: "center" },
+  aboutContent: {
+    width: "100%",
+    maxWidth: 640,
+    alignSelf: "center",
+    padding: 20,
+    alignItems: "center",
+  },
 
   audioBanner: {
     backgroundColor: "#FFFFFF",
@@ -777,12 +833,10 @@ const styles = StyleSheet.create({
     height: 42,
   },
   audioButton: {
-    backgroundColor: "#1E50BA",
-    borderRadius: 20,
-    padding: 8,
-    marginLeft: 8,
+    backgroundColor: "transparent",
+    padding: 4,
   },
-  audioIcon: { width: 22, height: 22, tintColor: "#FFFFFF" },
+  audioIcon: { width: 44, height: 44 },
 
   grid: {
     flexDirection: "row",
@@ -857,37 +911,55 @@ const styles = StyleSheet.create({
 
   tipCard: {
     backgroundColor: "#FFFFFF",
-    borderRadius: 14,
+    borderRadius: 20,
     borderWidth: 1.5,
     borderColor: "#333333",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    marginBottom: 10,
+    minHeight: 112,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
+    marginBottom: 16,
     elevation: 2,
   },
-  tipIconBox: { width: 32, alignItems: "center", justifyContent: "center" },
-  tipIconImage: { width: 24, height: 24 },
+  tipIconBox: { width: 56, alignItems: "center", justifyContent: "center" },
+  tipIconImage: { width: 48, height: 48 },
   tipText: {
     flex: 1,
-    fontSize: 12,
+    fontSize: 18,
     fontWeight: "bold",
     color: "#1E293B",
-    marginHorizontal: 8,
+    marginHorizontal: 12,
   },
 
   aboutCardLogo: { alignItems: "center", marginBottom: 16, marginTop: 10 },
   versionSmall: { fontSize: 12, color: "#555", marginTop: 4 },
+  aboutNarrationCard: {
+    width: "100%",
+    maxWidth: 640,
+    minHeight: 112,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 20,
+    borderWidth: 1.5,
+    borderColor: "#333333",
+    paddingVertical: 20,
+    paddingHorizontal: 16,
+    marginBottom: 24,
+    elevation: 2,
+  },
   aboutDescription: {
-    fontSize: 15,
-    textAlign: "center",
+    flex: 1,
+    fontSize: 18,
+    textAlign: "left",
     color: "#1E293B",
     fontWeight: "bold",
-    marginBottom: 24,
-    paddingHorizontal: 10,
-    lineHeight: 22,
+    marginHorizontal: 12,
+    lineHeight: 26,
   },
+  aboutAudioButton: { padding: 4 },
+  aboutAudioIcon: { width: 44, height: 44 },
 
   actionButtonRow: {
     backgroundColor: "#FFFFFF",
@@ -895,15 +967,16 @@ const styles = StyleSheet.create({
     borderColor: "#333333",
     borderRadius: 14,
     width: "100%",
-    paddingVertical: 14,
+    minHeight: 68,
+    paddingVertical: 18,
     alignItems: "center",
     marginBottom: 12,
     elevation: 2,
   },
-  actionButtonText: { fontSize: 15, fontWeight: "bold", color: "#1E293B" },
+  actionButtonText: { fontSize: 18, fontWeight: "bold", color: "#1E293B" },
 
-  basicTitle: { fontSize: 13, fontWeight: "bold", color: "#1E293B" },
-  basicSub: { fontSize: 11, color: "#555", marginTop: 2 },
+  basicTitle: { fontSize: 18, fontWeight: "bold", color: "#1E293B" },
+  basicSub: { fontSize: 15, color: "#64748B", marginTop: 4 },
 
   footer: {
     backgroundColor: "#1E50BA",
