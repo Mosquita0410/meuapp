@@ -623,7 +623,17 @@ export default function App() {
             Olá, vamos aprender a usar seu celular de forma fácil e prática!
           </Text>
 
-          <TouchableOpacity style={styles.homeAudioButton} activeOpacity={0.7}>
+          <TouchableOpacity
+            style={styles.homeAudioButton}
+            activeOpacity={0.7}
+            onPress={() =>
+              speakCardText(
+                "Olá, vamos aprender a usar seu celular de forma fácil e prática!",
+              )
+            }
+            accessibilityRole="button"
+            accessibilityLabel="Ouvir a mensagem de boas-vindas"
+          >
             <Image
               source={require("../../assets/som.png")}
               style={styles.homeAudioIcon}
@@ -837,10 +847,12 @@ const styles = StyleSheet.create({
   },
   homeAudioButton: {
     marginLeft: 12,
+    padding: 4,
+    flexShrink: 0,
   },
   homeAudioIcon: {
-    width: 42,
-    height: 42,
+    width: 52,
+    height: 52,
   },
   audioButton: {
     backgroundColor: "transparent",
