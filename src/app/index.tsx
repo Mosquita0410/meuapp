@@ -384,23 +384,23 @@ export default function App() {
           {[
             {
               texto: "Mantenha seu celular protegido com senha",
-              icone: require("../../assets/sistema.png"),
+              icone: require("../../assets/cadeadoazul.png"),
             },
             {
               texto: "Conecte-se ao Wi-Fi para economizar seus dados.",
-              icone: require("../../assets/sistema.png"),
+              icone: require("../../assets/wifiazul.png"),
             },
             {
               texto: "Carregue seu celular regularmente.",
-              icone: require("../../assets/telefone.png"),
+              icone: require("../../assets/bateriazul.png"),
             },
             {
               texto: "Apague aplicativos que não usa mais.",
-              icone: require("../../assets/perigo.png"),
+              icone: require("../../assets/lixeiraazul.png"),
             },
             {
               texto: "Em caso de dúvidas, peça ajuda a alguém de confiança.",
-              icone: require("../../assets/interrogacao.png"),
+              icone: require("../../assets/interrogaçãoazul.png"),
             },
           ].map((item, index) => (
             <View key={index} style={styles.tipCard}>
