@@ -456,8 +456,8 @@ export default function App() {
         >
           <View style={styles.aboutCardLogo}>
             <Image
-              source={require("../../assets/logo.png")}
-              style={{ width: 112, height: 112 }}
+              source={require("../../assets/logoazul.png")}
+              style={{ width: 180, height: 180 }}
               resizeMode="contain"
             />
             <Text style={styles.versionSmall}>Versão 1.0.0</Text>
@@ -485,11 +485,27 @@ export default function App() {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.actionButtonRow} activeOpacity={0.7}>
-            <Text style={styles.actionButtonText}>⭐ Avaliar o app</Text>
+          <TouchableOpacity
+            style={styles.actionButtonRow}
+            activeOpacity={0.7}
+          >
+            <Image
+              source={require("../../assets/estrelaazulbb.png")}
+              style={styles.actionButtonIcon}
+              resizeMode="contain"
+            />
+            <Text style={styles.actionButtonText}>Avaliar o app</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButtonRow} activeOpacity={0.7}>
-            <Text style={styles.actionButtonText}>🔗 Compartilhe</Text>
+          <TouchableOpacity
+            style={styles.actionButtonRow}
+            activeOpacity={0.7}
+          >
+            <Image
+              source={require("../../assets/compartilharazul.png")}
+              style={styles.actionButtonIcon}
+              resizeMode="contain"
+            />
+            <Text style={styles.actionButtonText}>Compartilhe</Text>
           </TouchableOpacity>
         </ScrollView>
         <View style={styles.footer}>
@@ -932,34 +948,34 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
   },
 
-  aboutCardLogo: { alignItems: "center", marginBottom: 16, marginTop: 10 },
-  versionSmall: { fontSize: 12, color: "#555", marginTop: 4 },
+  aboutCardLogo: { alignItems: "center", marginBottom: 24, marginTop: 16 },
+  versionSmall: { fontSize: 16, color: "#555", marginTop: 8 },
   aboutNarrationCard: {
     width: "100%",
     maxWidth: 640,
-    minHeight: 112,
+    minHeight: 140,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
     borderRadius: 20,
     borderWidth: 1.5,
     borderColor: "#333333",
-    paddingVertical: 20,
-    paddingHorizontal: 16,
-    marginBottom: 24,
+    paddingVertical: 24,
+    paddingHorizontal: 20,
+    marginBottom: 28,
     elevation: 2,
   },
   aboutDescription: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 20,
     textAlign: "left",
     color: "#1E293B",
     fontWeight: "bold",
-    marginHorizontal: 12,
-    lineHeight: 26,
+    marginHorizontal: 16,
+    lineHeight: 30,
   },
   aboutAudioButton: { padding: 4 },
-  aboutAudioIcon: { width: 44, height: 44 },
+  aboutAudioIcon: { width: 52, height: 52 },
 
   actionButtonRow: {
     backgroundColor: "#FFFFFF",
@@ -967,13 +983,18 @@ const styles = StyleSheet.create({
     borderColor: "#333333",
     borderRadius: 14,
     width: "100%",
-    minHeight: 68,
-    paddingVertical: 18,
+    minHeight: 88,
+    paddingVertical: 22,
+    paddingHorizontal: 20,
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
+    gap: 14,
     marginBottom: 12,
     elevation: 2,
   },
-  actionButtonText: { fontSize: 18, fontWeight: "bold", color: "#1E293B" },
+  actionButtonIcon: { width: 40, height: 40 },
+  actionButtonText: { fontSize: 20, fontWeight: "bold", color: "#1E293B" },
 
   basicTitle: { fontSize: 18, fontWeight: "bold", color: "#1E293B" },
   basicSub: { fontSize: 15, color: "#64748B", marginTop: 4 },
