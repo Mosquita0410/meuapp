@@ -530,8 +530,8 @@ export default function App() {
         >
           {[
             {
-              t: "Links suspeitos",
-              d: "Links enviados por estranhos.",
+              t: "Clique",
+              d: "Não clique na tela com força.",
               icone: require("../../assets/perigo.png"),
             },
             {
