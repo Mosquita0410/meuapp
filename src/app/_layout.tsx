@@ -1,7 +1,13 @@
-import { Stack } from 'expo-router';
+import { Stack } from "expo-router";
+import React from "react";
 
-export default function Layout() {
+export default function RootLayout() {
   return (
-    <Stack screenOptions={{ headerShown: false }} />
+    <Stack
+      screenOptions={{
+        headerShown: false, 
+        contentStyle: { backgroundColor: "#1E50BA" }, 
+      }}
+    />
   );
 }
